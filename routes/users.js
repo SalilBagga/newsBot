@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
+
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('f1802092cc24448e81d30ca45a37483f');
 //Using this function to fetch news from News API node liberary using parameters from dialogbot
-function fetchNews(param) {
+async function fetchNews(param) {
   var result = [];
   newsapi.v2
     .topHeadlines({
@@ -26,7 +27,7 @@ router.post('/', async function (req, res, next) {
   try {
     var dataToSend;
     /*Getting parameters from Dialogflow and Sending data from API*/
-    var parameter = req.body.queryResult.parameters['getnews'];
+    var parameter = req.body.queryResult.parameters['joke-type'];
     console.log(parameter);
     /*Checking which data to send based on the parameter*/
     if (!parameter) {

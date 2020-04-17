@@ -26,17 +26,16 @@ router.post('/', async function (req, res, next) {
   try {
     var dataToSend;
     /*Getting parameters from Dialogflow and Sending data from API*/
-    // var parameter = req.body.queryResult.parameters['getnews'];
+    var parameter = req.body.queryResult.parameters['getnews'];
     console.log(parameter);
     /*Checking which data to send based on the parameter*/
-    // if (!parameter) {
-    //   console.log('no news');
-    //   dataToSend = 'Sorry no data available on what you requested ';
-    // } else {
-    //   console.log('parameter news');
-    //   dataToSend = fetchNews(parameter);
-    // }
-    dataToSend = 'sending data';
+    if (!parameter) {
+      console.log('no news');
+      dataToSend = 'parameter not found ';
+    } else {
+      console.log('parameter news');
+      dataToSend = `${parameter} found as parameter`;
+    }
     console.log(`show(${dataToSend})`);
 
     return res.json({
